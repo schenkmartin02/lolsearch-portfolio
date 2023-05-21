@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {Component, NgModule} from '@angular/core';
 import {RiotapiService} from "./riotapi.service";
-import {delay, forkJoin} from "rxjs";
+import {DataSharingService} from "./services/data-sharing.service";
 
 
 @Component({
@@ -10,36 +9,28 @@ import {delay, forkJoin} from "rxjs";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  title = 'angular-lol';
   data: any;
-  matchData: any;
   accountId: any;
   puuId: any;
   id: any;
   match: any[] | undefined;
   league: any;
   loaded: boolean = false;
+  input: string = "Saga Seeker";
 
-  constructor(private api: RiotapiService) {
+  constructor(private api: RiotapiService, private dataSharingService: DataSharingService) {
   }
 
-  dataChanged(data: any) {
-    this.api.getSummonerData(data).subscribe((data) => {
+  search() {
+    this.api.getSummonerData(this.input).subscribe((data) => {
       this.data = data;
+      this.dataSharingService.updateChampionData(this.data);
       this.id = this.data.id;
+      console.log(this.data.id)
       this.accountId = this.data.accountId;
       this.puuId = this.data.puuid;
       this.api.getLeagueData(this.id).subscribe((data) => {
         this.league = data;
-      })
-      this.api.getMatchData(this.puuId).subscribe((data) => {
-        this.matchData = data;
-        const requests = this.matchData.map((data: string) => this.api.getMatchDataById(data));
-        forkJoin(requests).subscribe(data => {
-          // @ts-ignore
-          this.match = data.map(d => d.info);
-          console.log(this.match)
-        });
       });
     });
     this.loaded = true;

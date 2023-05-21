@@ -2,38 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-.iron-text {
-  color: #454443;
-}
-
-.bronze-text {
-  color: #785243;
-}
-
-.silver-text {
-  color: #859ca2;
-}
-
-.gold-text {
-  color: #c77c41;
-}
-
-.platinum-text {
-  color: #609090;
-}
-
-.diamond-text {
-  color: #596aaa;
-}
-
-.master-text {
-  color: #85589c;
-}
-
-.grandmaster-text {
-  color: #a74b5e;
-}
-
-.challenger-text {
-  color: #ebc98c;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

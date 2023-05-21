@@ -1,0 +1,103 @@
+<!--<div class="w-10/12 mx-auto bg-gray-700" *ngFor="let game of match">-->
+<!--  <div class="">-->
+
+<!--    <div class="" [className]="game.participants | gameStatus:data.id">-->
+<!--      <div class="">{{ game.gameDuration | gameTime }}</div>-->
+<!--      <div class="">{{ game.queueId | gameType }}</div>-->
+<!--      <div class="">{{ game.gameEndTimestamp | date:'short' }}</div>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--  <table class="bg-gray-800">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--      <th>Name</th>-->
+<!--      <th>Champion</th>-->
+<!--      <th>Stat</th>-->
+<!--      <th></th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    &lt;!&ndash; row 1 &ndash;&gt;-->
+<!--    <tr *ngFor="let member of game.participants">-->
+<!--      <td>-->
+<!--        <div class="">-->
+<!--          <div class="">-->
+<!--            <div class="">-->
+<!--              <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/profileicon/{{ member.profileIcon }}.png"-->
+<!--                   alt="profileIcon"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <div class="">{{ member.summonerName }}</div>-->
+<!--            <div class="">Level: {{ member.summonerLevel }}</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </td>-->
+<!--      <td>-->
+<!--        <div class="">-->
+<!--          <div class="">-->
+<!--            <div class="">-->
+<!--              <img-->
+<!--                src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/champion/{{ member.championName | championIconFix }}.png"-->
+<!--                alt="championIcon"/>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <div class="">{{ member.championName }}</div>-->
+<!--            <div class="">Role: {{ member.lane | roleType }}</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </td>-->
+<!--      <td>-->
+<!--        <div>-->
+<!--          <div class="">{{ member.kills }}/{{ member.deaths }}/{{ member.assists }}</div>-->
+<!--        </div>-->
+<!--      </td>-->
+<!--      <th>-->
+<!--        <a href="#{{ member.summonerName }}" class="">More...</a>-->
+<!--        &lt;!&ndash; Put this part before </body> tag &ndash;&gt;-->
+<!--        <div class="modal" id="{{ member.summonerName }}">-->
+<!--          <div class="modal-box">-->
+<!--            <h3 class="">{{ member.summonerName }}</h3>-->
+<!--            <div class="">-->
+<!--              <div class="" *ngIf="member.firstBloodKill">First Blood</div>-->
+<!--              <div class="" *ngIf="member.firstTowerKill">First Tower</div>-->
+<!--              <div class="" *ngIf="member.doubleKills">Double Kill: {{ member.doubleKills }}</div>-->
+<!--              <div class="" *ngIf="member.tripleKills">Triple Kill: {{ member.tripleKills }}</div>-->
+<!--              <div class="" *ngIf="member.quadraKills">Quadra Kill: {{ member.quadraKills }}</div>-->
+<!--              <div class="" *ngIf="member.pentaKills">Penta Kill: {{ member.pentaKills }}</div>-->
+<!--              <div class="">-->
+<!--                <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/{{ member.item0 }}.png" alt="item"-->
+<!--                     class="">-->
+<!--                <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/{{ member.item1 }}.png" alt="item"-->
+<!--                     class="">-->
+<!--                <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/{{ member.item2 }}.png" alt="item"-->
+<!--                     class="">-->
+<!--                <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/{{ member.item3 }}.png" alt="item"-->
+<!--                     class="">-->
+<!--                <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/{{ member.item4 }}.png" alt="item"-->
+<!--                     class="">-->
+<!--                <img src="http://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/{{ member.item5 }}.png" alt="item"-->
+<!--                     class="">-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="modal-action">-->
+<!--              <a href="#" class="">Exit!</a>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </th>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--    <tfoot>-->
+<!--    <tr>-->
+<!--      <th>Name</th>-->
+<!--      <th>Champion</th>-->
+<!--      <th>Stat</th>-->
+<!--      <th></th>-->
+<!--    </tr>-->
+<!--    </tfoot>-->
+<!--  </table>-->
+<!--</div>-->
+<p>Home</p>

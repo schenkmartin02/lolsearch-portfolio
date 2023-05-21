@@ -5,17 +5,12 @@ import {Pipe, PipeTransform} from '@angular/core';
 })
 export class GameStatusPipe implements PipeTransform {
 
-  transform(value: any[], id: string): unknown {
-    for (let player of value) {
-      if (player.summonerId == id) {
-        if (player.win) {
-          return "text-success";
-        } else {
-          return "text-error";
-        }
-      }
+  transform(value: any[]): unknown {
+    if (value) {
+      return "Victory";
+    } else {
+      return "Defeat";
     }
-    return value;
   }
 
 }

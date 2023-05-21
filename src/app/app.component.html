@@ -1,108 +1,52 @@
-<app-menu (dataChange)="dataChanged($event)"></app-menu><br>
-<div *ngIf="loaded" class="p-10">
-  <div class="card w-96 bg-base-100 shadow-xl">
-    <figure><img src="assets/img/profileicon/{{ data.profileIconId }}.png"
-                 alt="profileIcon" class="rounded-md"/></figure>
-    <div class="card-body">
-      <h2 class="card-title">
-        {{ data.name }}
-      </h2>
-      <p>Level: {{ data.summonerLevel }}</p>
-      <div class="card-actions justify-end">
-        <div [class]="rank.tier | rankText" class="badge badge-outline" *ngFor="let rank of league">{{ rank.queueType | rankType }} | {{ rank.tier | titlecase }} {{ rank.rank }}
-        </div>
+<nav class="flex items-center justify-between bg-gray-900 p-4">
+  <div class="text-white font-bold">League Of Legends</div>
+  <div class="flex items-center">
+    <input [(ngModel)]="input" type="text" placeholder="Search" class="px-4 py-2 rounded-l-md bg-gray-800 text-gray-200 focus:outline-none"/>
+    <button (click)="search()" class="px-4 py-2 bg-purple-700 text-white rounded-r-md hover:bg-purple-800">Search</button>
+  </div>
+</nav>
+<div *ngIf="loaded">
+  <div class="flex justify-between mt-5">
+    <div class="bg-gray-800 rounded-lg ml-5 w-full p-5">
+      <img src="assets/img/profileicon/{{ data.profileIconId }}.png"
+           alt="profileIcon" class="rounded-lg mx-auto w-1/2 h-auto"/>
+      <div class="text-center">
+        <h2 class="">
+          {{ data.name }}
+        </h2>
+        <p>Level: {{ data.summonerLevel }}</p>
       </div>
     </div>
+    <div *ngFor="let rank of league" class="bg-gray-800 rounded-lg ml-5 last:mr-5 w-full text-center">
+      <img src="assets/rank/{{ rank.tier | lowercase }}.webp"
+           alt="profileIcon" class="w-60 h-60 mx-auto"/>
+      <div class="">
+        <h2 class="">
+          {{ rank.queueType | rankType }} - {{ rank.rank }}
+        </h2>
+      </div>
+    </div>
+    <div class="bg-gray-800 rounded-lg mx-5 w-1/3 p-5">
+      <p class="text-center p-3 text-white font-bold">Menu</p>
+      <ul>
+        <li class="p-3 hover:bg-gray-900 hover:text-white rounded-lg cursor-pointer" routerLink="/mastery">Mastery Point</li>
+        <li class="p-3 hover:bg-gray-900 hover:text-white rounded-lg cursor-pointer" routerLink="/match">Match History</li>
+        <li class="p-3 hover:bg-gray-900 hover:text-white rounded-lg cursor-pointer" routerLink="/clash">Clash</li>
+      </ul>
+    </div>
   </div>
+  <router-outlet></router-outlet>
   <br>
-  <div class="overflow-x-auto w-full" *ngFor="let game of match">
-    <div class="stats p-5 pt-20 shadow">
-
-      <div class="stat" [className]="game.participants | gameStatus:data.id">
-        <div class="stat-title">{{ game.gameDuration | gameTime }}</div>
-        <div class="stat-value">{{ game.queueId | gameType }}</div>
-        <div class="stat-desc">{{ game.gameEndTimestamp | date:'short' }}</div>
-      </div>
-
-    </div>
-    <table class="table w-full">
-      <!-- head -->
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Champion</th>
-        <th>Stat</th>
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <!-- row 1 -->
-      <tr *ngFor="let member of game.participants">
-        <td>
-          <div class="flex items-center space-x-3">
-            <div class="avatar">
-              <div class="mask mask-squircle w-12 h-12">
-                <img src="assets/img/profileicon/{{ member.profileIcon }}.png" alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div class="font-bold">{{ member.summonerName }}</div>
-              <div class="text-sm opacity-50">Level: {{ member.summonerLevel }}</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="flex items-center space-x-3">
-            <div class="avatar">
-              <div class="mask mask-squircle w-12 h-12">
-                <img src="assets/img/champion/{{ member.championName | championIconFix }}.png" alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div class="font-bold">{{ member.championName }}</div>
-              <div class="text-sm opacity-50">Role: {{ member.lane | roleType }}</div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div>
-            <div class="font-bold">{{ member.kills }}/{{ member.deaths }}/{{ member.assists }}</div>
-          </div>
-        </td>
-        <th>
-          <a href="#{{ member.summonerName }}" class="btn">More...</a>
-          <!-- Put this part before </body> tag -->
-          <div class="modal" id="{{ member.summonerName }}">
-            <div class="modal-box">
-              <h3 class="font-bold text-lg">{{ member.summonerName }}</h3>
-              <div class="py-4">
-                <div class="badge badge-success" *ngIf="member.firstBloodKill">First Blood</div>
-                <div class="badge badge-success" *ngIf="member.firstTowerKill">First Tower</div>
-                <div class="badge badge-success" *ngIf="member.doubleKills">Double Kill: {{ member.doubleKills }}</div>
-                <div class="badge badge-success" *ngIf="member.tripleKills">Triple Kill: {{ member.tripleKills }}</div>
-                <div class="badge badge-success" *ngIf="member.quadraKills">Quadra Kill: {{ member.quadraKills }}</div>
-                <div class="badge badge-success" *ngIf="member.pentaKills">Penta Kill: {{ member.pentaKills }}</div>
-              </div>
-              <div class="modal-action">
-                <a href="#" class="btn">Exit!</a>
-              </div>
-            </div>
-          </div>
-        </th>
-      </tr>
-      </tbody>
-      <!-- foot -->
-      <tfoot>
-      <tr>
-        <th>Name</th>
-        <th>Champion</th>
-        <th>Stat</th>
-        <th></th>
-      </tr>
-      </tfoot>
-    </table>
-  </div>
   <br>
 </div>
 <br>
+<br>
+<footer class="bg-gray-900 text-white py-4 fixed w-full bottom-0">
+  <div class="container mx-auto flex items-center justify-between">
+    <div>
+      <span>©2023 SchenkLLC</span>
+    </div>
+  </div>
+</footer>
+
 

@@ -8,7 +8,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class MenuComponent {
   @Output() dataChange = new EventEmitter<any>();
-  input: string = "Ðarth Veigar";
+  input: string = "Saga Seeker";
 
   constructor() {
   }
