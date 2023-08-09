@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class RiotapiService{
-  api: string = 'RGAPI-cca0f81c-829f-4264-b60e-ed939f7d547c';
+  api: string = 'RIOTAPI';
   summonerName: string = "";
 
   constructor(private http: HttpClient) {
