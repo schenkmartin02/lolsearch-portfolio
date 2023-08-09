@@ -16,12 +16,14 @@ export class AppComponent{
   match: any[] | undefined;
   league: any;
   loaded: boolean = false;
+  load: boolean = false;
   input: string = "Saga Seeker";
 
   constructor(private api: RiotapiService, private dataSharingService: DataSharingService) {
   }
 
   search() {
+    this.loaded = true;
     this.api.getSummonerData(this.input).subscribe((data) => {
       this.data = data;
       this.dataSharingService.updateChampionData(this.data);
@@ -31,8 +33,10 @@ export class AppComponent{
       this.puuId = this.data.puuid;
       this.api.getLeagueData(this.id).subscribe((data) => {
         this.league = data;
+        this.loaded = false;
+        this.load = true;
       });
     });
-    this.loaded = true;
+    this.loaded = false;
   }
 }

@@ -5,7 +5,7 @@
     <button (click)="search()" class="px-4 py-2 bg-purple-700 text-white rounded-r-md hover:bg-purple-800">Search</button>
   </div>
 </nav>
-<div *ngIf="loaded">
+<div *ngIf="load">
   <div class="flex justify-between mt-5">
     <div class="bg-gray-800 rounded-lg ml-5 w-full p-5">
       <img src="assets/img/profileicon/{{ data.profileIconId }}.png"
@@ -39,6 +39,7 @@
   <br>
   <br>
 </div>
+<mat-spinner diameter="30" *ngIf="loaded"></mat-spinner>
 <br>
 <br>
 <footer class="bg-gray-900 text-white py-4 fixed w-full bottom-0">

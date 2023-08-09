@@ -1,252 +1,252 @@
 <div class="width-match">
-  <div
-    class="flex h-32 min-w-fit m-5 rounded-md"
-    *ngFor="let game of match; let i = index"
-    [class.bg-blue-950]="matchOwnData[i].win"
-    [class.bg-red-950]="!matchOwnData[i].win"
-  >
+  <ng-container *ngFor="let game of match; let i = index">
     <div
-      class="w-3 h-auto rounded-s-md"
-      [class.bg-blue-800]="matchOwnData[i].win"
-      [class.bg-red-800]="!matchOwnData[i].win"
+      class="flex h-32 min-w-fit m-5 rounded-md"
+      [class.bg-blue-950]="matchOwnData[i].win"
+      [class.bg-red-950]="!matchOwnData[i].win"
     >
-      &zwj;
-    </div>
-    <div class="w-full h-full flex justify-between">
-      <div class="p-2 text-sm w-36">
+      <div
+        class="w-3 h-auto rounded-s-md"
+        [class.bg-blue-800]="matchOwnData[i].win"
+        [class.bg-red-800]="!matchOwnData[i].win"
+      >
+        &zwj;
+      </div>
+      <div class="w-full h-full flex justify-between">
+        <div class="p-2 text-sm w-36">
         <span
           class="font-bold"
           [class.text-blue-600]="matchOwnData[i].win"
           [class.text-red-600]="!matchOwnData[i].win"
-          >{{ game.info.queueId | gameType }}</span
-        ><br />
-        <span class="text-gray-400">{{
-          game.info.gameEndTimestamp | timeToDay
-        }}</span
-        ><br />
-        <div
-          class="border-b-2 h-1.5 w-6/12 my-2"
-          [class.border-b-blue-900]="matchOwnData[i].win"
-          [class.border-b-red-900]="!matchOwnData[i].win"
-        >
-          &zwj;
+        >{{ game.info.queueId | gameType }}</span
+        ><br/>
+          <span class="text-gray-400">{{
+            game.info.gameEndTimestamp | timeToDay
+            }}</span
+          ><br/>
+          <div
+            class="border-b-2 h-1.5 w-6/12 my-2"
+            [class.border-b-blue-900]="matchOwnData[i].win"
+            [class.border-b-red-900]="!matchOwnData[i].win"
+          >
+            &zwj;
+          </div>
+          <span class="text-gray-400 font-bold">{{
+            matchOwnData[i].win ? "Victory" : "Defeate"
+            }}</span
+          ><br/>
+          <span class="text-gray-400">{{
+            game.info.gameDuration | gameTime
+            }}</span
+          ><br/>
         </div>
-        <span class="text-gray-400 font-bold">{{
-          matchOwnData[i].win ? "Victory" : "Defeate"
-        }}</span
-        ><br />
-        <span class="text-gray-400">{{
-          game.info.gameDuration | gameTime
-        }}</span
-        ><br />
-      </div>
-      <div class="p-2">
-        <div class="flex">
+        <div class="p-2">
           <div class="flex">
-            <div>
-              <img
-                class="w-14 h-14 rounded-full"
-                src="assets/img/champion/{{ matchOwnData[i].championName }}.png"
-                alt=""
-              />
-              <div
-                class="bg-gray-700 rounded-full p-0.5 w-5 h-5 text-xs text-center relative -top-5 -right-9 z-50"
-              >
-                {{ matchOwnData[i].champLevel }}
+            <div class="flex">
+              <div>
+                <img
+                  class="w-14 h-14 rounded-full"
+                  src="assets/img/champion/{{ matchOwnData[i].championName }}.png"
+                  alt=""
+                />
+                <div
+                  class="bg-gray-700 rounded-full p-0.5 w-5 h-5 text-xs text-center relative -top-5 -right-9 z-50"
+                >
+                  {{ matchOwnData[i].champLevel }}
+                </div>
               </div>
-            </div>
-            <div class="mt-2 mx-1">
-              <img
-                class="w-5 h-5 rounded-md"
-                src="assets/img/summonerSpell/{{
+              <div class="mt-2 mx-1">
+                <img
+                  class="w-5 h-5 rounded-md"
+                  src="assets/img/summonerSpell/{{
                   matchOwnData[i].summoner1Id | summonerSpellIdToName
                 }}.png"
-                alt=""
-              />
-              <img
-                class="mt-1 w-5 h-5 rounded-md"
-                src="assets/img/summonerSpell/{{
+                  alt=""
+                />
+                <img
+                  class="mt-1 w-5 h-5 rounded-md"
+                  src="assets/img/summonerSpell/{{
                   matchOwnData[i].summoner2Id | summonerSpellIdToName
                 }}.png"
-                alt=""
-              />
-            </div>
-            <div class="p-2">
+                  alt=""
+                />
+              </div>
+              <div class="p-2">
               <span class="text-white font-bold"
-                >{{ matchOwnData[i].kills
+              >{{ matchOwnData[i].kills
                 }}<span class="text-gray-400"> / </span
                 ><span class="text-red-500">{{ matchOwnData[i].deaths }}</span
                 ><span class="text-gray-400"> / </span
                 >{{ matchOwnData[i].assists }}</span
-              ><br />
-              <span class="text-xs text-gray-400 pl-1"
+              ><br/>
+                <span class="text-xs text-gray-400 pl-1"
                 >{{
                   (
                     (matchOwnData[i].kills + matchOwnData[i].assists) /
                     matchOwnData[i].deaths
                   ).toFixed(2)
-                }}
-                KDA</span
+                  }}
+                  KDA</span
+                >
+              </div>
+              <div
+                class="text-xs ml-8 text-gray-500 border-l-2 border-l-blue-900 pl-2"
+                [class.border-l-blue-900]="matchOwnData[i].win"
+                [class.border-l-red-900]="!matchOwnData[i].win"
               >
-            </div>
-            <div
-              class="text-xs ml-8 text-gray-500 border-l-2 border-l-blue-900 pl-2"
-              [class.border-l-blue-900]="matchOwnData[i].win"
-              [class.border-l-red-900]="!matchOwnData[i].win"
-            >
               <span class="text-red-600"
-                >P/Kill
+              >P/Kill
                 {{
-                  matchOwnData[i].teamId == 100
-                    ? (
-                        ((matchOwnData[i].kills + matchOwnData[i].assists) /
-                          matchKillsBlue[i]) *
-                        100
-                      ).toFixed()
-                    : (
-                        ((matchOwnData[i].kills + matchOwnData[i].assists) /
-                          matchKillsRed[i]) *
-                        100
-                      ).toFixed()
+                matchOwnData[i].teamId == 100
+                  ? (
+                    ((matchOwnData[i].kills + matchOwnData[i].assists) /
+                      matchKillsBlue[i]) *
+                    100
+                  ).toFixed()
+                  : (
+                    ((matchOwnData[i].kills + matchOwnData[i].assists) /
+                      matchKillsRed[i]) *
+                    100
+                  ).toFixed()
                 }}%</span
-              ><br />
-              <span
+              ><br/>
+                <span
                 >Control Ward
-                {{ matchOwnData[i].visionWardsBoughtInGame }}</span
-              ><br />
-              <span
+                  {{ matchOwnData[i].visionWardsBoughtInGame }}</span
+                ><br/>
+                <span
                 >CS
-                {{
+                  {{
                   matchOwnData[i].totalMinionsKilled +
-                    matchOwnData[i].neutralMinionsKilled
-                }}
-                ({{
+                  matchOwnData[i].neutralMinionsKilled
+                  }}
+                  ({{
                   (
                     (matchOwnData[i].totalMinionsKilled +
                       matchOwnData[i].neutralMinionsKilled) /
                     (matchOwnData[i].timePlayed / 60)
                   ).toFixed(1)
-                }})</span
-              ><br />
+                  }})</span
+                ><br/>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="p-1 flex">
-          <div class="mr-1">
-            <p
-              class="w-6 h-6 rounded-md"
-              [class.bg-blue-800]="matchOwnData[i].win"
-              [class.bg-red-800]="!matchOwnData[i].win"
-            >
-              &zwj;
-            </p>
-            <img
-              *ngIf="matchOwnData[i].item0 == 0 ? false : true"
-              class="w-6 h-6 rounded-md relative -top-6"
-              src="assets/img/item/{{ matchOwnData[i].item0 }}.png"
-              alt=""
-            />
-          </div>
-          <div class="mr-1">
-            <p
-              class="w-6 h-6 rounded-md"
-              [class.bg-blue-800]="matchOwnData[i].win"
-              [class.bg-red-800]="!matchOwnData[i].win"
-            >
-              &zwj;
-            </p>
-            <img
-              *ngIf="matchOwnData[i].item1 == 0 ? false : true"
-              class="w-6 h-6 rounded-md relative -top-6"
-              src="assets/img/item/{{ matchOwnData[i].item1 }}.png"
-              alt=""
-            />
-          </div>
-          <div class="mr-1">
-            <p
-              class="w-6 h-6 rounded-md"
-              [class.bg-blue-800]="matchOwnData[i].win"
-              [class.bg-red-800]="!matchOwnData[i].win"
-            >
-              &zwj;
-            </p>
-            <img
-              *ngIf="matchOwnData[i].item2 == 0 ? false : true"
-              class="w-6 h-6 rounded-md relative -top-6"
-              src="assets/img/item/{{ matchOwnData[i].item2 }}.png"
-              alt=""
-            />
-          </div>
-          <div class="mr-1">
-            <p
-              class="w-6 h-6 rounded-md"
-              [class.bg-blue-800]="matchOwnData[i].win"
-              [class.bg-red-800]="!matchOwnData[i].win"
-            >
-              &zwj;
-            </p>
-            <img
-              *ngIf="matchOwnData[i].item3 == 0 ? false : true"
-              class="w-6 h-6 rounded-md relative -top-6"
-              src="assets/img/item/{{ matchOwnData[i].item3 }}.png"
-              alt=""
-            />
-          </div>
-          <div class="mr-1">
-            <p
-              class="w-6 h-6 rounded-md"
-              [class.bg-blue-800]="matchOwnData[i].win"
-              [class.bg-red-800]="!matchOwnData[i].win"
-            >
-              &zwj;
-            </p>
-            <img
-              *ngIf="matchOwnData[i].item4 == 0 ? false : true"
-              class="w-6 h-6 rounded-md relative -top-6"
-              src="assets/img/item/{{ matchOwnData[i].item4 }}.png"
-              alt=""
-            />
-          </div>
-          <div class="mr-1">
-            <p
-              class="w-6 h-6 rounded-md"
-              [class.bg-blue-800]="matchOwnData[i].win"
-              [class.bg-red-800]="!matchOwnData[i].win"
-            >
-              &zwj;
-            </p>
-            <img
-              *ngIf="matchOwnData[i].item5 == 0 ? false : true"
-              class="w-6 h-6 rounded-md relative -top-6"
-              src="assets/img/item/{{ matchOwnData[i].item5 }}.png"
-              alt=""
-            />
-          </div>
-          <div>
-            <p
-              class="w-6 h-6 rounded-full"
-              [class.bg-blue-800]="matchOwnData[i].win"
-              [class.bg-red-800]="!matchOwnData[i].win"
-            >
-              &zwj;
-            </p>
-            <img
-              *ngIf="matchOwnData[i].item6 == 0 ? false : true"
-              class="w-6 h-6 rounded-full relative -top-6"
-              src="assets/img/item/{{ matchOwnData[i].item6 }}.png"
-              alt=""
-            />
-          </div>
-          <div
-            class="bg-red-500 h-full w-fit py-0.5 px-2 ml-3 mt-1 text-xs rounded-2xl"
-            *ngIf="
+          <div class="p-1 flex">
+            <div class="mr-1">
+              <p
+                class="w-6 h-6 rounded-md"
+                [class.bg-blue-800]="matchOwnData[i].win"
+                [class.bg-red-800]="!matchOwnData[i].win"
+              >
+                &zwj;
+              </p>
+              <img
+                *ngIf="matchOwnData[i].item0!=0"
+                class="w-6 h-6 rounded-md relative -top-9"
+                src="assets/img/item/{{ matchOwnData[i].item0 }}.png"
+                alt=""
+              />
+            </div>
+            <div class="mr-1">
+              <p
+                class="w-6 h-6 rounded-md"
+                [class.bg-blue-800]="matchOwnData[i].win"
+                [class.bg-red-800]="!matchOwnData[i].win"
+              >
+                &zwj;
+              </p>
+              <img
+                *ngIf="matchOwnData[i].item1!=0"
+                class="w-6 h-6 rounded-md relative -top-9"
+                src="assets/img/item/{{ matchOwnData[i].item1 }}.png"
+                alt=""
+              />
+            </div>
+            <div class="mr-1">
+              <p
+                class="w-6 h-6 rounded-md"
+                [class.bg-blue-800]="matchOwnData[i].win"
+                [class.bg-red-800]="!matchOwnData[i].win"
+              >
+                &zwj;
+              </p>
+              <img
+                *ngIf="matchOwnData[i].item2!=0"
+                class="w-6 h-6 rounded-md relative -top-9"
+                src="assets/img/item/{{ matchOwnData[i].item2 }}.png"
+                alt=""
+              />
+            </div>
+            <div class="mr-1">
+              <p
+                class="w-6 h-6 rounded-md"
+                [class.bg-blue-800]="matchOwnData[i].win"
+                [class.bg-red-800]="!matchOwnData[i].win"
+              >
+                &zwj;
+              </p>
+              <img
+                *ngIf="matchOwnData[i].item3!=0"
+                class="w-6 h-6 rounded-md relative -top-9"
+                src="assets/img/item/{{ matchOwnData[i].item3 }}.png"
+                alt=""
+              />
+            </div>
+            <div class="mr-1">
+              <p
+                class="w-6 h-6 rounded-md"
+                [class.bg-blue-800]="matchOwnData[i].win"
+                [class.bg-red-800]="!matchOwnData[i].win"
+              >
+                &zwj;
+              </p>
+              <img
+                *ngIf="matchOwnData[i].item4!=0"
+                class="w-6 h-6 rounded-md relative -top-9"
+                src="assets/img/item/{{ matchOwnData[i].item4 }}.png"
+                alt=""
+              />
+            </div>
+            <div class="mr-1">
+              <p
+                class="w-6 h-6 rounded-md"
+                [class.bg-blue-800]="matchOwnData[i].win"
+                [class.bg-red-800]="!matchOwnData[i].win"
+              >
+                &zwj;
+              </p>
+              <img
+                *ngIf="matchOwnData[i].item5!=0"
+                class="w-6 h-6 rounded-md relative -top-9"
+                src="assets/img/item/{{ matchOwnData[i].item5 }}.png"
+                alt=""
+              />
+            </div>
+            <div>
+              <p
+                class="w-6 h-6 rounded-full"
+                [class.bg-blue-800]="matchOwnData[i].win"
+                [class.bg-red-800]="!matchOwnData[i].win"
+              >
+                &zwj;
+              </p>
+              <img
+                *ngIf="matchOwnData[i].item6!=0"
+                class="w-6 h-6 rounded-full relative -top-9"
+                src="assets/img/item/{{ matchOwnData[i].item6 }}.png"
+                alt=""
+              />
+            </div>
+            <div
+              class="bg-red-500 h-full w-fit py-0.5 px-2 ml-3 mt-1 text-xs rounded-2xl"
+              *ngIf="
               matchOwnData[i].pentaKills != 0 ||
               matchOwnData[i].quadraKills != 0 ||
               matchOwnData[i].tripleKills != 0 ||
               matchOwnData[i].doubleKills != 0
             "
-          >
-            {{
+            >
+              {{
               matchOwnData[i].pentaKills == 0
                 ? matchOwnData[i].quadraKills == 0
                   ? matchOwnData[i].tripleKills == 0
@@ -256,75 +256,92 @@
                     : "Triple Kill"
                   : "Quadra Kill"
                 : "Penta Kill"
-            }}
+              }}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="flex w-44 text-sm my-auto mr-2">
-        <div class="flex items-center">
-          <div class="mr-2">
-            <div *ngFor="let player of game.info.participants">
-              <ng-container *ngIf="player.teamId == 100">
-                <img
-                  class="w-5 h-5 rounded-full"
-                  src="assets/img/champion/{{
+        <div class="flex w-52 text-sm my-auto mr-2">
+          <div class="flex items-center">
+            <div class="mr-2">
+              <ng-container *ngFor="let player of game.info.participants">
+                <ng-container *ngIf="player.teamId == 100">
+                  <div>
+                    <img
+                      class="w-5 h-5 rounded-full"
+                      src="assets/img/champion/{{
                     player.teamId == 100 ? player.championName : 0
                   }}.png"
-                  alt=""
-                />
+                      alt=""
+                    />
+                  </div>
+                </ng-container>
               </ng-container>
             </div>
           </div>
-        </div>
-        <div class="mr-2">
-          <div *ngFor="let player of game.info.participants">
-            <ng-container *ngIf="player.teamId == 100">
+          <div class="mr-2">
+            <ng-container *ngFor="let player of game.info.participants">
+              <ng-container *ngIf="player.teamId == 100">
+                <div>
               <span>{{
-                player.teamId == 100 ? player.summonerName : (0 | textMaxLenght)
-              }}</span
-              ><br />
+                player.teamId == 100 ? (player.summonerName | textMaxLenght) : (0 | textMaxLenght)
+                }}</span
+              ><br/>
+                </div>
+              </ng-container>
             </ng-container>
           </div>
-        </div>
-        <div class="flex items-center">
-          <div class="mr-2">
-            <div *ngFor="let player of game.info.participants">
-              <ng-container *ngIf="player.teamId == 200">
-                <img
-                  class="w-5 h-5 rounded-full"
-                  src="assets/img/champion/{{
+          <div class="flex items-center">
+            <div class="mr-2">
+              <ng-container *ngFor="let player of game.info.participants">
+                <ng-container *ngIf="player.teamId == 200">
+                  <div>
+                    <img
+                      class="w-5 h-5 rounded-full"
+                      src="assets/img/champion/{{
                     player.teamId == 200 ? player.championName : 0
                   }}.png"
-                  alt=""
-                />
+                      alt=""
+                    />
+                  </div>
+                </ng-container>
               </ng-container>
             </div>
-          </div>
-          <div>
-            <div *ngFor="let player of game.info.participants">
-              <ng-container *ngIf="player.teamId == 200">
+            <div>
+              <ng-container *ngFor="let player of game.info.participants">
+                <ng-container *ngIf="player.teamId == 200">
+                  <div>
                 <span>{{
                   player.teamId == 200
-                    ? player.summonerName
+                    ? (player.summonerName | textMaxLenght)
                     : (0 | textMaxLenght)
-                }}</span
-                ><br />
+                  }}</span
+                ><br/>
+                  </div>
+                </ng-container>
               </ng-container>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="w-10 h-auto rounded-e-md"
-      [class.hover:bg-blue-950]="matchOwnData[i].win"
-      [class.hover:bg-red-950]="!matchOwnData[i].win"
-      [class.bg-blue-900]="matchOwnData[i].win"
-      [class.bg-red-900]="!matchOwnData[i].win"
-    >
-      <div class="pl-1.5 py-14">
-        <mat-icon>expand_more</mat-icon>
+      <div
+        class="w-10 h-auto rounded-e-md"
+        [class.hover:bg-blue-950]="matchOwnData[i].win"
+        [class.hover:bg-red-950]="!matchOwnData[i].win"
+        [class.bg-blue-900]="matchOwnData[i].win"
+        [class.bg-red-900]="!matchOwnData[i].win"
+        (click)="showDetails[i] = !showDetails[i]"
+      >
+        <div class="pl-1.5 py-14">
+          <mat-icon>expand_more</mat-icon>
+          <mat-icon>decrease_more</mat-icon>
+        </div>
       </div>
     </div>
-  </div>
+    <div *ngIf="showDetails[i]">
+      <div class="flex h-10 justify-between min-w-fit m-5 p-1 rounded-md bg-gray-900">
+        <div class="bg-gray-800 py-2 w-full text-center mr-1 hover:bg-gray-700 rounded-md">Overview</div>
+        <div class="bg-gray-800 py-2 w-full text-center hover:bg-gray-700 rounded-md">Graph</div>
+      </div>
+    </div>
+  </ng-container>
 </div>

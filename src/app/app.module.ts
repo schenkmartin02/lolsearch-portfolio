@@ -29,6 +29,7 @@ import { TextMaxLenghtPipe } from './pipes/text-max-lenght.pipe';
 import { TimeToDayPipe } from './pipes/time-to-day.pipe';
 import { SummonerSpellIdToNamePipe } from './pipes/summoner-spell-id-to-name.pipe';
 import { TeamBluePipe } from './pipes/team-blue.pipe';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { TeamBluePipe } from './pipes/team-blue.pipe';
         AppRoutingModule,
         FormsModule,
         BrowserAnimationsModule,
-        MatIconModule
+        MatIconModule,
+        MatProgressSpinnerModule
     ],
   providers: [],
   bootstrap: [AppComponent]
